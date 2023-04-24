@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Flappy_Move : MonoBehaviour
 {
@@ -16,12 +17,18 @@ public class Flappy_Move : MonoBehaviour
         }
         if(Mathf.Abs(transform.position.y) > 5)
         {
-            Destroy(gameObject);
+            EndGame();
         }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        EndGame();
+    }
+
+    void EndGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         Destroy(gameObject);
     }
 }
